@@ -739,20 +739,36 @@
           window.Telegram.WebApp.sendData(JSON.stringify(payload));
         }
         const res = await fetch(BOT_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('send error');
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload)
+});
 
-        quizScreen.classList.add('hidden');
-        successScreen.classList.remove('hidden');
-        scoreBadge.textContent = `Score: ${score}`;
-        verdictText.textContent = 'Ожидай, я лично разберу твою ситуацию и напишу тебе в Telegram.';
-        startQueueTimer();
-      } catch (e) {
-        stateMsg.textContent = 'Не удалось отправить данные. Проверь backend route /api/lead.';
-      }
+const rawText = await res.text();
+console.log('API STATUS:', res.status);
+console.log('API RAW:', rawText);
+
+let data = {};
+try {
+  data = JSON.parse(rawText);
+} catch (_) {
+  data = { raw: rawText };
+}
+
+if (!res.ok) {
+  stateMsg.textContent = `Ошибка: ${data.error || 'unknown_error'} ${data.details || data.raw || ''}`;
+  return;
+}
+
+quizScreen.classList.add('hidden');
+successScreen.classList.remove('hidden');
+scoreBadge.textContent = `Score: ${score}`;
+verdictText.textContent = 'Ожидай, я лично разберу твою ситуацию и напишу тебе в Telegram.';
+startQueueTimer();
+} catch (e) {
+  console.error('FETCH ERROR:', e);
+  stateMsg.textContent = `Ошибка сети: ${e.message}`;
+}
     });
 
     document.getElementById('reviewBtn').addEventListener('click', () => {
