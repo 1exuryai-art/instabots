@@ -735,9 +735,9 @@
 
       try {
         stateMsg.textContent = 'Отправка...';
-        if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.sendData) {
-          window.Telegram.WebApp.sendData(JSON.stringify(payload));
-        }
+        // if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.sendData) {
+//   window.Telegram.WebApp.sendData(JSON.stringify(payload));
+// }
         const res = await fetch(BOT_ENDPOINT, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
