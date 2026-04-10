@@ -8,7 +8,7 @@ const bot = new TelegramBot(token, { polling: true });
 bot.onText(/\/start/, async (msg) => {
   const chatId = msg.chat.id;
 
-  await bot.sendPhoto(chatId, './welcome.jpg', {
+  await bot.sendPhoto(chatId, 'ankieta11.png', {
     caption: `Привет.
 
 Это анкета для разбора твоей системы обработки заявок в Instagram.
