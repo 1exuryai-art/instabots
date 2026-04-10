@@ -390,6 +390,77 @@
       font-weight: 600;
     }
 
+    .queue-wrap {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 0 30px rgba(255,255,255,0.02), 0 0 30px rgba(255,94,199,0.06);
+    }
+
+    .queue-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.92);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .queue-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ff5ec7, #f0d9ff);
+      box-shadow: 0 0 14px rgba(255,94,199,0.45);
+      animation: queuePulse 1.8s ease-in-out infinite;
+      flex: 0 0 auto;
+    }
+
+    .queue-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .queue-timer-block {
+      min-height: 84px;
+      border-radius: 18px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .queue-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.42);
+    }
+
+    .queue-time {
+      margin-top: 10px;
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 700;
+      color: rgba(255,255,255,0.96);
+      text-shadow: 0 0 18px rgba(255,94,199,0.12);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .queue-status {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.82);
+    }
+
     @keyframes optionIn {
       from { opacity: 0; transform: translateY(18px) scale(.985); }
       to { opacity: 1; transform: translateY(0) scale(1); }
@@ -413,8 +484,36 @@
       }
     }
 
+    @keyframes queuePulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(255,94,199,0.32);
+        opacity: 0.88;
+      }
+      50% {
+        transform: scale(1.18);
+        box-shadow: 0 0 22px rgba(255,94,199,0.52), 0 0 34px rgba(255,94,199,0.22);
+        opacity: 1;
+      }
+    }
+      50% {
+        box-shadow:
+          0 10px 36px rgba(255,94,199,0.20),
+          inset 0 0 34px rgba(255,255,255,0.06),
+          0 0 0 1px rgba(255,94,199,0.16),
+          0 0 28px rgba(255,94,199,0.24),
+          0 0 42px rgba(255,94,199,0.12);
+      }
+    }
+
     @media (max-width: 380px) {
       .hero-title { font-size: 25px; }
+      .question-title { font-size: 20px; }
+      .option { font-size: 15px; min-height: 60px; }
+      .btn-secondary { width: 98px; }
+      .queue-meta { grid-template-columns: 1fr; }
+      .queue-time { font-size: 24px; }
+    }
       .question-title { font-size: 20px; }
       .option { font-size: 15px; min-height: 60px; }
       .btn-secondary { width: 98px; }
@@ -473,12 +572,25 @@
       <section class="glass question-card hidden" id="successScreen">
         <div class="success-icon">✓</div>
         <div class="eyebrow">Submission Complete</div>
-        <div class="question-title" style="margin-top:6px;">Данные отправлены</div>
+        <div class="question-title" style="margin-top:6px;">Анкета принята</div>
         <div class="score-badge" id="scoreBadge"></div>
-        <div class="question-subtitle" id="verdictText"></div>
+        <div class="queue-wrap" id="queueWrap">
+          <div class="queue-pill"><span class="queue-dot"></span><span id="queueText">Ты в очереди на разбор</span></div>
+          <div class="queue-meta">
+            <div class="queue-timer-block">
+              <div class="queue-label">Примерное ожидание</div>
+              <div class="queue-time" id="queueTimer">12:00</div>
+            </div>
+            <div class="queue-timer-block">
+              <div class="queue-label">Статус</div>
+              <div class="queue-status" id="queueStatus">Ожидает моего сообщения</div>
+            </div>
+          </div>
+        </div>
+        <div class="question-subtitle" id="verdictText">Ожидай, я лично разберу твою ситуацию и напишу тебе в Telegram.</div>
         <div class="actions" style="margin-top:22px;">
-          <button class="btn btn-primary" id="reviewBtn">Забрать разбор</button>
-          <button class="btn btn-secondary" id="telegramBtn">Telegram</button>
+          <button class="btn btn-primary" id="reviewBtn">Ок, жду</button>
+          <button class="btn btn-secondary" id="telegramBtn">Открыть Telegram</button>
         </div>
       </section>
     </div>
@@ -636,7 +748,8 @@
         quizScreen.classList.add('hidden');
         successScreen.classList.remove('hidden');
         scoreBadge.textContent = `Score: ${score}`;
-        verdictText.textContent = verdict;
+        verdictText.textContent = 'Ожидай, я лично разберу твою ситуацию и напишу тебе в Telegram.';
+        startQueueTimer();
       } catch (e) {
         stateMsg.textContent = 'Не удалось отправить данные. Проверь backend route /api/lead.';
       }
@@ -645,6 +758,44 @@
     document.getElementById('reviewBtn').addEventListener('click', () => {
       alert('Тут можно открыть разбор, PDF или следующий экран.');
     });
+
+    function startQueueTimer() {
+      const queueTimer = document.getElementById('queueTimer');
+      const queueText = document.getElementById('queueText');
+      const queueStatus = document.getElementById('queueStatus');
+      let totalSeconds = 12 * 60;
+
+      function renderTimer() {
+        const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+        const seconds = String(totalSeconds % 60).padStart(2, '0');
+        queueTimer.textContent = `${minutes}:${seconds}`;
+      }
+
+      renderTimer();
+
+      const interval = setInterval(() => {
+        totalSeconds -= 1;
+        if (totalSeconds <= 0) {
+          clearInterval(interval);
+          queueTimer.textContent = 'Скоро';
+          queueText.textContent = 'Твоя анкета почти дошла до разбора';
+          queueStatus.textContent = 'Ожидай сообщение в Telegram';
+          return;
+        }
+
+        if (totalSeconds === 8 * 60) {
+          queueStatus.textContent = 'Анкета в очереди';
+        }
+        if (totalSeconds === 5 * 60) {
+          queueText.textContent = 'Ты в приоритетной очереди';
+        }
+        if (totalSeconds === 2 * 60) {
+          queueStatus.textContent = 'Почти дошли до твоей анкеты';
+        }
+
+        renderTimer();
+      }, 1000);
+    }
 
     document.getElementById('telegramBtn').addEventListener('click', () => {
       window.open('https://t.me/your_username', '_blank');
