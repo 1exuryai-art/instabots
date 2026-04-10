@@ -3,7 +3,7 @@ import TelegramBot from 'node-telegram-bot-api';
 const token = process.env.TELEGRAM_BOT_TOKEN;
 
 // ⚠️ ВСТАВЬ СЮДА СВОЙ RAILWAY ДОМЕН
-const MINI_APP_URL = 'instabots-production.up.railway.app';
+const MINI_APP_URL = 'https://instabots-production.up.railway.app';
 
 const bot = new TelegramBot(token, { polling: true });
 
