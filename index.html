@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Luxury Tech Beauty Mini App</title>
+  <title>Автоматизация Инстаграм — Анкета</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
@@ -14,8 +14,6 @@
       --violet: #a855f7;
       --silver: #e7e9ff;
       --glass: rgba(255,255,255,0.08);
-      --glass-2: rgba(255,255,255,0.05);
-      --border: rgba(255,255,255,0.11);
       --text: rgba(255,255,255,0.94);
       --muted: rgba(255,255,255,0.58);
     }
@@ -110,12 +108,7 @@
     .top-card { padding: 18px; margin-bottom: 14px; }
     .question-card { padding: 20px; min-height: 520px; }
 
-    .orb-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 18px;
-    }
-
+    .orb-wrap { display: flex; justify-content: center; margin-bottom: 18px; }
     .orb {
       position: relative;
       width: 118px;
@@ -136,7 +129,6 @@
       justify-content: center;
       overflow: hidden;
     }
-
     .orb::after {
       content: "";
       position: absolute;
@@ -145,7 +137,6 @@
       filter: blur(16px);
       z-index: 0;
     }
-
     .orb img {
       position: relative;
       z-index: 1;
@@ -156,15 +147,8 @@
       filter: drop-shadow(0 0 16px rgba(255,255,255,0.14));
     }
 
-    .muted {
-      color: var(--muted);
-    }
-
-    .field {
-      position: relative;
-      margin-top: 10px;
-    }
-
+    .muted { color: var(--muted); }
+    .field { position: relative; margin-top: 10px; }
     .field input {
       width: 100%;
       border-radius: 18px;
@@ -178,7 +162,6 @@
       -webkit-backdrop-filter: blur(16px);
       transition: 0.25s ease;
     }
-
     .field input::placeholder { color: rgba(255,255,255,0.36); }
     .field input:focus {
       border-color: rgba(255,94,199,0.30);
@@ -194,7 +177,6 @@
       background: rgba(255,255,255,0.08);
       overflow: hidden;
     }
-
     .progress-fill {
       height: 100%;
       width: 0;
@@ -212,7 +194,6 @@
       margin: 8px 0 10px;
       color: rgba(255,255,255,0.96);
     }
-
     .eyebrow {
       font-size: 11px;
       text-transform: uppercase;
@@ -220,12 +201,7 @@
       color: rgba(255,255,255,0.42);
     }
 
-    .options {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
+    .options { display: grid; gap: 10px; margin-top: 18px; }
     .option {
       position: relative;
       width: 100%;
@@ -244,12 +220,10 @@
       opacity: 0;
       animation: optionIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
-
     .option:nth-child(1) { animation-delay: 0.04s; }
     .option:nth-child(2) { animation-delay: 0.08s; }
     .option:nth-child(3) { animation-delay: 0.12s; }
     .option:nth-child(4) { animation-delay: 0.16s; }
-
     .option::before {
       content: "";
       position: absolute;
@@ -260,28 +234,23 @@
       opacity: 1;
       pointer-events: none;
     }
-
     .option:hover {
       transform: translateY(-2px);
       border-color: rgba(255,255,255,0.16);
       background: linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.06));
     }
-
     .option.active {
-      border-color: rgba(255,94,199,0.35);
+      border-color: rgba(255,94,199,0.38);
       box-shadow:
-        0 10px 35px rgba(255,94,199,0.15),
+        0 10px 35px rgba(255,94,199,0.16),
         inset 0 0 30px rgba(255,255,255,0.05),
-        0 0 0 1px rgba(255,94,199,0.12);
+        0 0 0 1px rgba(255,94,199,0.14),
+        0 0 22px rgba(255,94,199,0.22);
       background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.07));
+      animation: selectedGlow 2.1s ease-in-out infinite;
     }
 
-    .actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
+    .actions { display: flex; gap: 10px; margin-top: 18px; }
     .btn {
       position: relative;
       border: none;
@@ -296,10 +265,8 @@
       -webkit-backdrop-filter: blur(20px);
       transition: transform 0.22s ease, opacity 0.22s ease;
     }
-
     .btn:hover { transform: translateY(-2px); }
     .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-
     .btn::before {
       content: "";
       position: absolute;
@@ -312,15 +279,12 @@
       transform: skewX(-20deg);
       transition: left 0.55s ease;
     }
-
     .btn:hover::before { left: 120%; }
-
     .btn-primary {
       flex: 1;
       background: linear-gradient(135deg, rgba(255,94,199,0.22), rgba(168,85,247,0.18), rgba(231,233,255,0.10));
       box-shadow: 0 12px 40px rgba(255,94,199,0.20), 0 0 0 1px rgba(255,255,255,0.06);
     }
-
     .btn-secondary {
       min-width: 108px;
       background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
@@ -340,83 +304,84 @@
       font-size: 13px;
       line-height: 1.5;
     }
-
-    .consent input {
-      margin-top: 2px;
-      accent-color: var(--rose);
-    }
-
-    .state-msg {
-      margin-top: 12px;
-      font-size: 13px;
-      color: #ffc6e9;
-    }
-
-    .question-stage {
-      transform-origin: center bottom;
-      animation: cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .question-stage.exit {
-      animation: cardOut 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    .success {
-      display: none;
-      animation: cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
+    .consent input { margin-top: 2px; accent-color: var(--rose); }
+    .state-msg { margin-top: 12px; font-size: 13px; color: #ffc6e9; }
+    .question-stage { transform-origin: center bottom; animation: cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+    .question-stage.exit { animation: cardOut 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .success { display: none; animation: cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
     .success.active { display: block; }
-
     .success-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,94,199,0.14);
-      border: 1px solid rgba(255,94,199,0.24);
-      box-shadow: 0 0 35px rgba(255,94,199,0.16);
-      font-size: 24px;
-      margin-bottom: 14px;
+      width: 56px; height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center;
+      background: rgba(255,94,199,0.14); border: 1px solid rgba(255,94,199,0.24); box-shadow: 0 0 35px rgba(255,94,199,0.16);
+      font-size: 24px; margin-bottom: 14px;
+    }
+    .loader-overlay {
+      position: fixed; inset: 0; z-index: 25; display: none; align-items: center; justify-content: center;
+      background: radial-gradient(circle at center, rgba(255,94,199,0.14), rgba(7,3,12,0.72));
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    }
+    .loader-core {
+      width: 120px; height: 120px; border-radius: 999px;
+      background: radial-gradient(circle, rgba(255,255,255,0.22), rgba(255,94,199,0.18), transparent 70%);
+      box-shadow: 0 0 80px rgba(255,94,199,0.35), inset 0 0 30px rgba(255,255,255,0.1);
+      animation: moltenFlash 0.9s ease forwards;
+    }
+    .cta-row { display:flex; gap:10px; margin-top:22px; flex-wrap:wrap; }
+    .score-badge {
+      display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px;
+      background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.88); margin-top:14px;
     }
 
     @keyframes cardIn {
-      0% {
-        opacity: 0;
-        transform: translateY(70px) scale(0.92) perspective(1200px) rotateX(16deg);
-        filter: blur(16px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1) perspective(1200px) rotateX(0deg);
-        filter: blur(0px);
-      }
+      0% { opacity: 0; transform: translateY(70px) scale(0.92) perspective(1200px) rotateX(16deg); filter: blur(16px); }
+      100% { opacity: 1; transform: translateY(0) scale(1) perspective(1200px) rotateX(0deg); filter: blur(0px); }
     }
-
     @keyframes cardOut {
-      0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-20px) scale(1.04);
-        filter: blur(10px);
-      }
+      0% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+      100% { opacity: 0; transform: translateY(-20px) scale(1.04); filter: blur(10px); }
     }
-
     @keyframes optionIn {
       0% { opacity: 0; transform: translateY(24px) scale(0.98); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes selectedGlow {
+      0% {
+        box-shadow:
+          0 10px 35px rgba(255,94,199,0.12),
+          inset 0 0 30px rgba(255,255,255,0.04),
+          0 0 0 1px rgba(255,94,199,0.10),
+          0 0 10px rgba(255,94,199,0.12);
+        filter: brightness(1);
+      }
+      50% {
+        box-shadow:
+          0 10px 38px rgba(255,94,199,0.22),
+          inset 0 0 34px rgba(255,255,255,0.06),
+          0 0 0 1px rgba(255,94,199,0.18),
+          0 0 26px rgba(255,94,199,0.28),
+          0 0 42px rgba(255,94,199,0.14);
+        filter: brightness(1.06);
+      }
+      100% {
+        box-shadow:
+          0 10px 35px rgba(255,94,199,0.12),
+          inset 0 0 30px rgba(255,255,255,0.04),
+          0 0 0 1px rgba(255,94,199,0.10),
+          0 0 10px rgba(255,94,199,0.12);
+        filter: brightness(1);
+      }
+    }
+    @keyframes moltenFlash {
+      0% { transform: scale(0.55); opacity: 0; filter: blur(18px); }
+      35% { transform: scale(1.05); opacity: 1; filter: blur(8px); }
+      100% { transform: scale(1.25); opacity: 0; filter: blur(22px); }
     }
   </style>
 </head>
 <body>
   <div class="bg-png"></div>
   <div class="noise"></div>
+  <div class="loader-overlay" id="stepLoader"><div class="loader-core"></div></div>
 
   <div class="app-shell">
     <div class="content">
@@ -427,45 +392,50 @@
           </div>
         </div>
 
-        <div class="eyebrow">Luxury Tech Beauty</div>
-        <div style="font-size: 17px; font-weight: 700; margin-top: 6px;">Telegram Mini App</div>
-        <div class="muted" style="font-size: 13px; margin-top: 6px;">Сильный визуал. Быстрый отбор. Данные сразу в Telegram бота.</div>
+        <div class="eyebrow">Автоматизация Инстаграм</div>
+        <div style="font-size: 17px; font-weight: 700; margin-top: 6px;">Приветствую тебя!</div>
+        <div class="muted" style="font-size: 13px; margin-top: 6px;">Готов(а) пройти анкету?</div>
 
         <div class="field"><input id="name" placeholder="Твоё имя" /></div>
         <div class="field"><input id="username" placeholder="Telegram username" /></div>
       </div>
 
-      <div class="glass question-card">
-        <div class="progress-line"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="glass question-card" id="introScreen">
+        <div class="question-stage">
+          <div class="eyebrow">Добро пожаловать</div>
+          <div class="title">Это не просто анкета</div>
+          <div class="muted" style="font-size: 14px; line-height: 1.7; margin-top: 8px;">
+            За пару экранов мы поймём, где у тебя текут заявки, где теряется время и какую автоматизацию можно внедрить первой.
+          </div>
+          <div style="margin-top: 18px; display:grid; gap:10px;">
+            <div class="option" style="opacity:1; transform:none; cursor:default; animation:none;">13 быстрых вопросов</div>
+            <div class="option" style="opacity:1; transform:none; cursor:default; animation:none;">Персональный разбор по ответам</div>
+            <div class="option" style="opacity:1; transform:none; cursor:default; animation:none;">Данные сразу отправляются в Telegram</div>
+          </div>
+          <div class="actions" style="margin-top:22px;">
+            <button id="startQuizBtn" class="btn btn-primary">Начать анкету</button>
+          </div>
+        </div>
+      </div>
 
+      <div class="glass question-card" id="questionCard" style="display:none;">
+        <div class="progress-line"><div class="progress-fill" id="progressFill"></div></div>
         <div id="questionStage" class="question-stage">
           <div class="eyebrow" id="stepLabel"></div>
           <div class="title" id="questionTitle"></div>
           <div class="muted" id="questionSubtitle" style="font-size: 14px; line-height: 1.65;"></div>
-
           <div class="options" id="options"></div>
-
           <div class="actions">
             <button id="prevBtn" class="btn btn-secondary">Назад</button>
             <button id="nextBtn" class="btn btn-primary">Дальше</button>
           </div>
-
           <label class="consent">
             <input type="checkbox" id="consent" />
             <span>Я подтверждаю согласие на обработку данных для связи, анализа анкеты и подготовки решения.</span>
           </label>
-
           <div id="stateMsg" class="state-msg"></div>
         </div>
-
-        <div id="successBlock" class="success">
-          <div class="success-icon">✓</div>
-          <div class="eyebrow">Submission Complete</div>
-          <div class="title">Данные отправлены</div>
-          <div class="muted" style="font-size: 14px; line-height: 1.7;">
-            Анкета принята. Теперь можно показать следующий экран с оффером, ссылкой в личный Telegram или кнопкой на разбор.
-          </div>
-        </div>
+        <div id="successBlock" class="success"></div>
       </div>
     </div>
   </div>
@@ -474,89 +444,27 @@
     const BOT_ENDPOINT = "/api/lead";
 
     const questions = [
-      {
-        id: "new_clients",
-        title: "Количество новых клиентов в Direct за месяц?",
-        subtitle: "Оцени реальный поток, без красивых сказок.",
-        options: ["0–10", "10–30", "30–60", "60+"],
-      },
-      {
-        id: "reply_speed",
-        title: "Скорость ответа во время работы с клиентом?",
-        subtitle: "Как быстро ты реально отвечаешь, когда руки заняты.",
-        options: ["Сразу", "5–15 минут", "15–60 минут", "Часто позже часа"],
-      },
-      {
-        id: "forgotten_messages",
-        title: "Проблема забытых сообщений?",
-        subtitle: "Открыл, отвлёкся, потерял — классика или нет?",
-        options: ["Почти не бывает", "Иногда", "Часто", "Это уже система хаоса"],
-      },
-      {
-        id: "daily_replies_time",
-        title: "Сколько времени в день уходит на ответы про прайс, адрес и окошки?",
-        subtitle: "Тут обычно и умирает время.",
-        options: ["До 15 минут", "15–30 минут", "30–60 минут", "1 час+"],
-      },
-      {
-        id: "silent_leads",
-        title: "Как работаешь с теми, кто спросил цену и пропал?",
-        subtitle: "Есть ли возврат молчунов в диалог.",
-        options: ["Никак", "Пишу вручную", "Иногда напоминаю", "Есть система дожима"],
-      },
-      {
-        id: "address_transfer",
-        title: "Как передаёшь адрес клиенту?",
-        subtitle: "Ручной режим или уже хоть что-то автоматизировано.",
-        options: ["Пишу вручную", "Копирую шаблон", "Скидываю геолокацию", "Автоматически"],
-      },
-      {
-        id: "auto_menu",
-        title: "Есть ли авто-меню с прайсом в Direct?",
-        subtitle: "Чтобы клиент не ждал, пока ты закончишь процедуру.",
-        options: ["Нет", "Есть базовое", "Есть с кнопками", "Да, и оно продаёт"],
-      },
-      {
-        id: "reels_keywords",
-        title: "Используешь кодовые слова в Reels для автоматизации записи?",
-        subtitle: "Например, человек пишет ключевое слово и попадает в воронку.",
-        options: ["Нет", "Только думаю об этом", "Тестировал(а)", "Да, использую"],
-      },
-      {
-        id: "night_reaction",
-        title: "Что происходит с сообщениями, которые приходят с 23:00 до 01:00?",
-        subtitle: "Пока ты живёшь свою жизнь, система должна работать.",
-        options: ["Ждут до утра", "Частично отвечаю", "Иногда теряются", "Автоответ + сценарий"],
-      },
-      {
-        id: "no_show_percent",
-        title: "Какой процент отмен из-за того, что клиент забыл прийти?",
-        subtitle: "Без напоминаний это почти всегда течь в деньгах.",
-        options: ["Почти 0%", "До 10%", "10–25%", "25%+"],
-      },
-      {
-        id: "contact_base",
-        title: "Есть ли база контактов клиентов?",
-        subtitle: "Номера, ники, сегменты — хоть что-то собрано?",
-        options: ["Нет", "Частично", "Есть таблица", "Есть база и структура"],
-      },
-      {
-        id: "reviews_collection",
-        title: "Как собираешь отзывы?",
-        subtitle: "После услуги отзыв должен не выпрашиваться, а собираться системой.",
-        options: ["Никак", "Прошу вручную", "Иногда напоминаю", "Через систему"],
-      },
-      {
-        id: "average_check",
-        title: "Средний чек мастера?",
-        subtitle: "Нужен для оценки потерь и потенциала автоматизации.",
-        options: ["До 100 zł", "100–200 zł", "200–400 zł", "400 zł+"],
-      }
+      { id: "new_clients", title: "Количество новых клиентов в Direct за месяц?", subtitle: "Оцени реальный поток, без красивых сказок.", options: ["0–10", "10–30", "30–60", "60+"] },
+      { id: "reply_speed", title: "Скорость ответа во время работы с клиентом?", subtitle: "Как быстро ты реально отвечаешь, когда руки заняты.", options: ["Сразу", "5–15 минут", "15–60 минут", "Часто позже часа"] },
+      { id: "forgotten_messages", title: "Проблема забытых сообщений?", subtitle: "Открыл, отвлёкся, потерял — классика или нет?", options: ["Почти не бывает", "Иногда", "Часто", "Это уже система хаоса"] },
+      { id: "daily_replies_time", title: "Сколько времени в день уходит на ответы про прайс, адрес и окошки?", subtitle: "Тут обычно и умирает время.", options: ["До 15 минут", "15–30 минут", "30–60 минут", "1 час+"] },
+      { id: "silent_leads", title: "Как работаешь с теми, кто спросил цену и пропал?", subtitle: "Есть ли возврат молчунов в диалог.", options: ["Никак", "Пишу вручную", "Иногда напоминаю", "Есть система дожима"] },
+      { id: "address_transfer", title: "Как передаёшь адрес клиенту?", subtitle: "Ручной режим или уже хоть что-то автоматизировано.", options: ["Пишу вручную", "Копирую шаблон", "Скидываю геолокацию", "Автоматически"] },
+      { id: "auto_menu", title: "Есть ли авто-меню с прайсом в Direct?", subtitle: "Чтобы клиент не ждал, пока ты закончишь процедуру.", options: ["Нет", "Есть базовое", "Есть с кнопками", "Да, и оно продаёт"] },
+      { id: "reels_keywords", title: "Используешь кодовые слова в Reels для автоматизации записи?", subtitle: "Например, человек пишет ключевое слово и попадает в воронку.", options: ["Нет", "Только думаю об этом", "Тестировал(а)", "Да, использую"] },
+      { id: "night_reaction", title: "Что происходит с сообщениями, которые приходят с 23:00 до 01:00?", subtitle: "Пока ты живёшь свою жизнь, система должна работать.", options: ["Ждут до утра", "Частично отвечаю", "Иногда теряются", "Автоответ + сценарий"] },
+      { id: "no_show_percent", title: "Какой процент отмен из-за того, что клиент забыл прийти?", subtitle: "Без напоминаний это почти всегда течь в деньгах.", options: ["Почти 0%", "До 10%", "10–25%", "25%+"] },
+      { id: "contact_base", title: "Есть ли база контактов клиентов?", subtitle: "Номера, ники, сегменты — хоть что-то собрано?", options: ["Нет", "Частично", "Есть таблица", "Есть база и структура"] },
+      { id: "reviews_collection", title: "Как собираешь отзывы?", subtitle: "После услуги отзыв должен не выпрашиваться, а собираться системой.", options: ["Никак", "Прошу вручную", "Иногда напоминаю", "Через систему"] },
+      { id: "average_check", title: "Средний чек мастера?", subtitle: "Нужен для оценки потерь и потенциала автоматизации.", options: ["До 100 zł", "100–200 zł", "200–400 zł", "400 zł+"] }
     ];
 
     let stepIndex = 0;
     const answers = {};
 
+    const introScreen = document.getElementById('introScreen');
+    const questionCard = document.getElementById('questionCard');
+    const startQuizBtn = document.getElementById('startQuizBtn');
     const stage = document.getElementById('questionStage');
     const successBlock = document.getElementById('successBlock');
     const stepLabel = document.getElementById('stepLabel');
@@ -567,6 +475,7 @@
     const prevBtn = document.getElementById('prevBtn');
     const progressFill = document.getElementById('progressFill');
     const stateMsg = document.getElementById('stateMsg');
+    const loaderOverlay = document.getElementById('stepLoader');
 
     function progressPercent() {
       return Math.round(((stepIndex + 1) / questions.length) * 100);
@@ -575,7 +484,6 @@
     function renderOptions() {
       const current = questions[stepIndex];
       optionsWrap.innerHTML = '';
-
       current.options.forEach((option) => {
         const button = document.createElement('button');
         button.className = 'option' + (answers[current.id] === option ? ' active' : '');
@@ -600,15 +508,54 @@
       stateMsg.textContent = '';
     }
 
+    function showLoaderThen(cb) {
+      loaderOverlay.style.display = 'flex';
+      setTimeout(() => {
+        loaderOverlay.style.display = 'none';
+        cb();
+      }, 520);
+    }
+
     function animateChange(callback) {
       stage.classList.add('exit');
-      setTimeout(() => {
+      showLoaderThen(() => {
         stage.classList.remove('exit');
         void stage.offsetWidth;
         callback();
         stage.classList.add('question-stage');
-      }, 300);
+      });
     }
+
+    function computeScore() {
+      const map = {
+        '0–10': 1, '10–30': 2, '30–60': 3, '60+': 4,
+        'Сразу': 1, '5–15 минут': 2, '15–60 минут': 3, 'Часто позже часа': 4,
+        'Почти не бывает': 1, 'Иногда': 2, 'Часто': 3, 'Это уже система хаоса': 4,
+        'До 15 минут': 1, '15–30 минут': 2, '30–60 минут': 3, '1 час+': 4,
+        'Никак': 4, 'Пишу вручную': 3, 'Иногда напоминаю': 2, 'Есть система дожима': 1,
+        'Копирую шаблон': 3, 'Скидываю геолокацию': 2, 'Автоматически': 1,
+        'Нет': 4, 'Есть базовое': 3, 'Есть с кнопками': 2, 'Да, и оно продаёт': 1,
+        'Только думаю об этом': 3, 'Тестировал(а)': 2, 'Да, использую': 1,
+        'Ждут до утра': 4, 'Частично отвечаю': 3, 'Иногда теряются': 4, 'Автоответ + сценарий': 1,
+        'Почти 0%': 1, 'До 10%': 2, '10–25%': 3, '25%+': 4,
+        'Частично': 3, 'Есть таблица': 2, 'Есть база и структура': 1,
+        'Прошу вручную': 3, 'Через систему': 1,
+        'До 100 zł': 1, '100–200 zł': 2, '200–400 zł': 3, '400 zł+': 4
+      };
+      return questions.reduce((sum, q) => sum + (map[answers[q.id]] || 0), 0);
+    }
+
+    function verdictByScore(score) {
+      if (score <= 22) return 'У тебя уже есть база. Нужна точечная докрутка и усиление конверсии.';
+      if (score <= 34) return 'Система частично держится, но ты всё ещё теряешь заявки и время вручную.';
+      return 'У тебя сильная утечка времени и денег. Автоматизацию нужно внедрять в первую очередь.';
+    }
+
+    startQuizBtn.onclick = () => {
+      introScreen.style.display = 'none';
+      questionCard.style.display = 'block';
+      render();
+    };
 
     prevBtn.onclick = () => {
       if (stepIndex === 0) return;
@@ -633,60 +580,59 @@
         return;
       }
 
-      if (!name) {
-        stateMsg.textContent = 'Введи имя.';
-        return;
-      }
+      if (!name) { stateMsg.textContent = 'Введи имя.'; return; }
+      if (!username) { stateMsg.textContent = 'Введи Telegram username.'; return; }
+      if (!consent) { stateMsg.textContent = 'Нужно согласие на обработку данных.'; return; }
 
-      if (!username) {
-        stateMsg.textContent = 'Введи Telegram username.';
-        return;
-      }
-
-      if (!consent) {
-        stateMsg.textContent = 'Нужно согласие на обработку данных.';
-        return;
-      }
+      const score = computeScore();
+      const verdict = verdictByScore(score);
 
       const payload = {
-        contact: {
-          name,
-          telegramUsername: username,
-        },
+        contact: { name, telegramUsername: username },
         consent,
         submittedAt: new Date().toISOString(),
         source: 'telegram-mini-app',
-        answers: questions.map((q, i) => ({
-          step: i + 1,
-          id: q.id,
-          question: q.title,
-          answer: answers[q.id] || ''
-        }))
+        score,
+        verdict,
+        answers: questions.map((q, i) => ({ step: i + 1, id: q.id, question: q.title, answer: answers[q.id] || '' }))
       };
 
       try {
         stateMsg.textContent = 'Отправка...';
-
         if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.sendData) {
           window.Telegram.WebApp.sendData(JSON.stringify(payload));
         }
-
         const res = await fetch(BOT_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-
         if (!res.ok) throw new Error('send error');
 
         stage.style.display = 'none';
         successBlock.classList.add('active');
+        successBlock.innerHTML = `
+          <div class="success-icon">✓</div>
+          <div class="eyebrow">Submission Complete</div>
+          <div class="title">Данные отправлены</div>
+          <div class="score-badge">Score: <strong>${score}</strong></div>
+          <div class="muted" style="font-size: 14px; line-height: 1.7; margin-top: 12px;">${verdict}</div>
+          <div class="cta-row">
+            <button class="btn btn-primary" id="getReviewBtn">Забрать разбор</button>
+            <button class="btn btn-secondary" id="goTelegramBtn">Перейти в Telegram</button>
+          </div>
+        `;
+
+        document.getElementById('getReviewBtn').onclick = () => {
+          alert('Тут можно открыть следующий экран, PDF-разбор или форму записи на консультацию.');
+        };
+        document.getElementById('goTelegramBtn').onclick = () => {
+          window.open('https://t.me/your_username', '_blank');
+        };
       } catch (e) {
         stateMsg.textContent = 'Не удалось отправить данные. Проверь backend route /api/lead.';
       }
     };
-
-    render();
   </script>
 </body>
 </html>
