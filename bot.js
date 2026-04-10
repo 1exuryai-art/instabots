@@ -1,8 +1,6 @@
-import TelegramBot from 'node-telegram-bot-api';
+const TelegramBot = require('node-telegram-bot-api');
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
-
-// ⚠️ ВСТАВЬ СЮДА СВОЙ RAILWAY ДОМЕН
 const MINI_APP_URL = 'https://instabots-production.up.railway.app';
 
 const bot = new TelegramBot(token, { polling: true });
@@ -15,7 +13,7 @@ bot.onText(/\/start/, async (msg) => {
   try {
     await bot.sendPhoto(
       chatId,
-      'ankieta11.png', // ← файл в корне репо
+      './anketa11.png', // файл в корне
       {
         caption: `Привет.
 
@@ -33,6 +31,6 @@ bot.onText(/\/start/, async (msg) => {
       }
     );
   } catch (e) {
-    console.error('ERROR:', e.message);
+    console.error(e);
   }
 });
