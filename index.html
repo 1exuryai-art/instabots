@@ -718,6 +718,8 @@
       const score = computeScore();
       const verdict = verdictByScore(score);
 
+      const BOT_ENDPOINT = `${window.location.origin}/api/lead`;
+console.log('BOT_ENDPOINT =', BOT_ENDPOINT);
       const payload = {
         contact: { name, telegramUsername: username },
         consent,
