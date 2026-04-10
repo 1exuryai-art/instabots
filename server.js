@@ -6,6 +6,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static("."));
+app.get("/", (req, res) => {
+  res.sendFile(process.cwd() + "/index.html");
+});
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
