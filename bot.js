@@ -1,4 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
+const fs = require('fs');
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
 const MINI_APP_URL = 'https://instabots-production.up.railway.app';
@@ -13,7 +14,7 @@ bot.onText(/\/start/, async (msg) => {
   try {
     await bot.sendPhoto(
       chatId,
-      './anketa11.png', // файл в корне
+      fs.createReadStream('./ankieta11.png'),
       {
         caption: `Привет.
 
@@ -30,6 +31,7 @@ bot.onText(/\/start/, async (msg) => {
         }
       }
     );
+
   } catch (e) {
     console.error(e);
   }
